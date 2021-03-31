@@ -2,8 +2,9 @@ const User = require('../models/model_user')
 const bcrypt = require('bcryptjs')
 const authController = []
 const generateJWT = require('../helpers/generateJWT')
+const { response, request } = require('express')
 
-authController.loginValidation = async (req, res) => 
+authController.loginValidation = async (req = request, res = response) => 
 {
     const {email, password} = req.body
 

@@ -1,4 +1,6 @@
-const isAdminRole = (req, res, next) => {
+const { response, request } = require('express')
+
+const isAdminRole = (req = request, res = response, next) => {
     if (!req.user)
     {
         return res.status(500).json({
@@ -22,7 +24,7 @@ const isAdminRole = (req, res, next) => {
 }
 
 const validRole = (...roles) => {
-    return (req, res, next) => {
+    return (req = request, res = response, next) => {
         if (!req.user)
         {
             return res.status(500).json({
