@@ -8,8 +8,13 @@ class Server
     {
         this.app = express()
         this.port = process.env.PORT
-        this.usersPath = '/users'
-        this.authPath = '/auth'
+        this.path = {
+            users:      '/users',
+            auth:       '/auth',
+            categories: '/categories',
+            products:   '/products',
+            browser:    '/browser'
+        }
 
         this.dbConnection()
         this.middleWares()
@@ -32,8 +37,11 @@ class Server
 
     routes()
     {
-        this.app.use(this.authPath, require('../routes/auth.route'))
-        this.app.use(this.usersPath, require('../routes/user.route'))
+        this.app.use(this.path.auth,        require('../routes/auth.route'))
+        this.app.use(this.path.categories,  require('../routes/categories.route'))
+        this.app.use(this.path.users,       require('../routes/user.route'))
+        this.app.use(this.path.products,    require('../routes/product.route'))
+        this.app.use(this.path.browser,     require('../routes/browser.route'))
     }
 
     listen()

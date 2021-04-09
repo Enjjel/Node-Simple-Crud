@@ -12,5 +12,9 @@ router.get('/login', [
     validateFields
 ],authController.loginValidation)
 
+router.post('/google', [
+    check("id_token", "a valid token is required").not().isEmpty(),
+    validateFields
+],authController.googleSignIn)
 
 module.exports = router 
